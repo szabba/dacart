@@ -138,3 +138,13 @@ func (a Vector) Equal(b Vector) bool {
 
 	return true
 }
+
+// Decompose a vector into the part parallel and orthogonal to another one.
+func (a Vector) ProjectionRejection(wRespectTo Vector) (prj, rej Vector) {
+
+	prj = wRespectTo.Unit().Scale(a.Dot(wRespectTo))
+
+	rej = a.Minus(prj)
+
+	return prj, rej
+}
