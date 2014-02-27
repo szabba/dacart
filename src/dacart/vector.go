@@ -78,6 +78,25 @@ func (a Vector) Norm() float64 {
 	return math.Sqrt(a.Dot(a))
 }
 
+// Scale a vector by s
+func (a Vector) Scale(s float64) (b Vector) {
+
+	b = a.Copy()
+
+	for i, _ := range a {
+
+		b[i] *= s
+	}
+
+	return b
+}
+
+// Produce the unit vector oriented the same as a
+func (a Vector) Unit() Vector {
+
+	return a.Scale(1 / a.Norm())
+}
+
 // Take the cross product of two vectors
 func (a Vector) Cross(b Vector) (c Vector) {
 
