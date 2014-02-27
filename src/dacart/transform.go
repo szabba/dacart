@@ -26,16 +26,39 @@ func (t Translation) Transform(v Vector) Vector {
 
 // A rotation transform
 type AxisAngleRotation struct {
-	Axis  Vector
-	Angle float64
+	axis  Vector
+	angle float64
+}
+
+// Create an AxisAngleRotation
+func NewAxisAngleRotation(axis Vector, angle float64) *AxisAngleRotation {
+
+	aar := new(AxisAngleRotation)
+
+	aar.axis = axis
+	aar.angle = angle
+
+	return aar
+}
+
+// Angle of rotation
+func (aar *AxisAngleRotation) Angle() float64 {
+
+	return aar.angle
+}
+
+// Axis of rotation
+func (aar *AxisAngleRotation) Axis() Vector {
+
+	return aar.axis.Copy()
 }
 
 // Rotates a vector by aar.Angle around an axis parallel to aar.Axis going
 // through the origin point
 func (aar AxisAngleRotation) Transform(v Vector) (vRot Vector) {
 
-	cos, sin := math.Cos(aar.Angle), math.Sin(aar.Angle)
-	unit := aar.Axis.Unit()
+	cos, sin := math.Cos(aar.angle), math.Sin(aar.angle)
+	unit := aar.axis.Unit()
 
 	vRot = NewZeroVector()
 

@@ -11,14 +11,14 @@ import (
 
 func doesntRotateAroundItself(a Vector, t *testing.T) {
 
-	rot := AxisAngleRotation{Axis: a, Angle: math.Pi / 2}
+	rot := NewAxisAngleRotation(a, math.Pi/2)
 
 	if !rot.Transform(a).Equal(a) {
 
 		t.Fatalf(
 			"Rotating %v around itself by %f should have no effect on it "+
 				"(returns %v).",
-			a, rot.Angle, rot.Transform(a),
+			a, rot.Angle(), rot.Transform(a),
 		)
 	}
 }
