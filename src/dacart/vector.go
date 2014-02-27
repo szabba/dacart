@@ -8,7 +8,7 @@ import (
 	"math"
 )
 
-// A three component vector
+// A three component cartesian vector
 type Vector []float64
 
 // Create new zero vector
@@ -76,4 +76,19 @@ func (a Vector) Dot(b Vector) float64 {
 func (a Vector) Norm() float64 {
 
 	return math.Sqrt(a.Dot(a))
+}
+
+// Take the cross product of two vectors
+func (a Vector) Cross(b Vector) (c Vector) {
+
+	c = NewZeroVector()
+
+	for i, _ := range a {
+
+		c[i] += a[(i+1)%3] * b[(i+2)%3]
+
+		c[i] -= a[(i+2)%3] * b[(i+1)%3]
+	}
+
+	return c
 }
