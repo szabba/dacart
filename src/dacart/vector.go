@@ -124,3 +124,17 @@ func (a Vector) Cross(b Vector) (c Vector) {
 
 	return c
 }
+
+// Compare two vectors for equality
+func (a Vector) Equal(b Vector) bool {
+
+	for i, _ := range a {
+
+		if a[i] != b[i] {
+
+			return false
+		}
+	}
+
+	return true
+}
