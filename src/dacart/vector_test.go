@@ -8,10 +8,18 @@ import (
 	"testing"
 )
 
+func UnitVectors() (eX, eY, eZ Vector) {
+
+	eX = NewVector(1, 0, 0)
+	eY = NewVector(0, 1, 0)
+	eZ = NewVector(0, 0, 1)
+
+	return
+}
+
 func TestDotProduct(t *testing.T) {
 
-	eX := NewVector(1, 0, 0)
-	eY := NewVector(0, 1, 0)
+	eX, eY, _ := UnitVectors()
 
 	if eX.Dot(eY) != 0 {
 
