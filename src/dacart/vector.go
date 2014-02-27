@@ -27,6 +27,19 @@ func NewVector(x, y, z float64) Vector {
 	return v
 }
 
+// Copy the vector
+func (v Vector) Copy() (u Vector) {
+
+	u = NewZeroVector()
+
+	for i, vComp := range v {
+
+		u[i] = vComp
+	}
+
+	return u
+}
+
 // Add two vectors
 func (a Vector) Plus(b Vector) (c Vector) {
 
