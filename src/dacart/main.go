@@ -8,18 +8,34 @@ import (
 	"fmt"
 )
 
+func testCollision(t1, t2 Triangle) {
+
+	fmt.Printf("The triangles are %v and %v.\n", t1, t2)
+
+	doThey := "do not"
+	if Collide(t1, t2) {
+
+		doThey = "do"
+	}
+
+	fmt.Printf("The triangles %s collide.\n", doThey)
+}
+
 func main() {
 
 	t := NewTriangle(
 		NewVector(0, 0, 0), NewVector(1, 0, 0), NewVector(1, 1, 0),
 	)
 
-	d := Translation{By: NewVector(1, 2, 3)}
+	t2 := NewTriangle(
+		NewVector(1, 1, 0), NewVector(1, 0, 0), NewVector(0, 1, 0),
+	)
 
-	fmt.Println("Triangle:", t)
-	fmt.Println("Translating by:", d.By)
+	t3 := NewTriangle(
+		NewVector(2, 0, 0), NewVector(3, 0, 0), NewVector(2, 1, 0),
+	)
 
-	t = t.Transform(d)
-
-	fmt.Println("Translated triangle:", t)
+	testCollision(t, t2)
+	testCollision(t, t3)
+	testCollision(t2, t3)
 }
