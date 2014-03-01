@@ -148,3 +148,19 @@ func (a Vector) ProjectionRejection(wRespectTo Vector) (prj, rej Vector) {
 
 	return prj, rej
 }
+
+// Component vector parallel to another one.
+func (a Vector) Projection(onto Vector) (prj Vector) {
+
+	prj, _ = a.ProjectionRejection(onto)
+
+	return prj
+}
+
+// Component vector orthogonal to another one.
+func (a Vector) Rejection(ofOf Vector) (rej Vector) {
+
+	_, rej = a.ProjectionRejection(ofOf)
+
+	return rej
+}
