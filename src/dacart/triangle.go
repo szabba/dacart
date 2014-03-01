@@ -35,3 +35,16 @@ func (t Triangle) Transform(T Transform) Triangle {
 
 	return t2
 }
+
+// The vertices of the triangle
+func (t Triangle) Vertices() []Vector {
+
+	vs := make([]Vector, 3)
+
+	for i, v := range t {
+
+		vs[i] = v.Copy()
+	}
+
+	return vs
+}
